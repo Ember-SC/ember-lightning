@@ -4,7 +4,7 @@
   "description": "Ember lightning hosting",
   "main": "index.js",
   "scripts": {
-    "start": "source .apprc && nvm run 0.12.2 index.js",
+    "start": "node --harmony index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

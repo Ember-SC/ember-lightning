@@ -1,4 +1,6 @@
 # ember-lightning
-Ember lightning hosting for https://github.com/LevelbossMike/ember-deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/philipheinser/ember-lightning)
+Ember lightning hosting for https://github.com/ember-cli/ember-cli-deploy
+
+Use a copy of the app.example.json in app.json and configure your
+connection to Redis and the port you want to run your app on.

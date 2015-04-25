@@ -1,5 +1,4 @@
 'use strict';
-var config = require('./app.json');
 
 var redis = require('redis'),
     coRedis = require('co-redis'),
@@ -7,24 +6,24 @@ var redis = require('redis'),
 
 var app = koa(),
     client = redis.createClient(
-      config.env.REDIS_PORT.value,
-      config.env.REDIS_HOST.value
+      process.env.REDIS_PORT,
+      process.env.REDIS_HOST
     ),
     dbCo = coRedis(client);
 
-client.auth(config.env.REDIS_SECRET.value);
+client.auth(process.env.REDIS_SECRET);
 
 app.use(function* () {
   var indexkey;
 
   if (this.request.query.index_key) {
-    indexkey = config.env.APP_NAME.value +':'+ this.request.query.index_key;
+    indexkey = process.env.APP_NAME +':'+ this.request.query.index_key;
   } else {
-    indexkey = yield dbCo.get(config.env.APP_NAME.value +':current');
+    indexkey = yield dbCo.get(process.env.APP_NAME +':current');
   }
   var index = yield dbCo.get(indexkey);
 
   this.body = index || '';
 });
 
-app.listen(config.env.APP_PORT.value || 8787);
+app.listen(process.env.APP_PORT.value || 8787);
